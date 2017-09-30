@@ -1,4 +1,4 @@
-package com.example.library;
+package com.winnie.library;
 
 import org.junit.Test;
 
