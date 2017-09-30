@@ -1,18 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.winnie.stickynavscrollview.MainActivity">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="StickyScrollView"
+            android:textAllCaps="false"
+            android:onClick="StickyScrollView"
+            android:visibility="gone"
+            android:layout_margin="10dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="StickyNavScrollView1"
+            android:textAllCaps="false"
+            android:onClick="StickyNavScrollView1"
+            android:layout_margin="10dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="StickyNavScrollView2"
+            android:textAllCaps="false"
+            android:onClick="StickyNavScrollView2"
+            android:layout_margin="10dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="StickyNavScrollLayout1"
+            android:textAllCaps="false"
+            android:onClick="StickyNavScrollLayout1"
+            android:layout_margin="10dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="StickyNavScrollLayout2"
+            android:textAllCaps="false"
+            android:onClick="StickyNavScrollLayout2"
+            android:layout_margin="10dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="StickyNavPullToRefreshView"
+            android:textAllCaps="false"
+            android:onClick="StickyNavPullToRefreshView"
+            android:layout_margin="10dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="StickyNavPullToRefreshLayout"
+            android:textAllCaps="false"
+            android:onClick="StickyNavPullToRefreshLayout"
+            android:layout_margin="10dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ClipChild"
+            android:textAllCaps="false"
+            android:onClick="ClipChild"
+            android:visibility="gone"
+            android:layout_margin="10dp"/>
+
+    </LinearLayout>
+
+</ScrollView>
