@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 import com.winnie.library.stickynav.base.IStickyTabViewListener;
@@ -24,6 +25,8 @@ public class TabFragment extends Fragment implements IStickyTabViewListener
     private RecyclerView mRecyclerView;
     // private TextView mTextView;
     private List<String> mDatas = new ArrayList<String>();
+
+    private TextView mTextView;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -60,6 +63,9 @@ public class TabFragment extends Fragment implements IStickyTabViewListener
 //        });
 
         mRecyclerView.setAdapter(new RecyclerTestAdapter(getContext(), mDatas));
+
+        mTextView = view.findViewById(R.id.sticky_nav_tab_title);
+        mTextView.setText(mTitle);
         return view;
 
     }

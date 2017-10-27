@@ -74,6 +74,14 @@
             android:visibility="gone"
             android:layout_margin="10dp"/>
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="StickyNavMutlTab"
+            android:textAllCaps="false"
+            android:onClick="StickyNavMutlTab"
+            android:layout_margin="10dp"/>
+
     </LinearLayout>
 
 </ScrollView>

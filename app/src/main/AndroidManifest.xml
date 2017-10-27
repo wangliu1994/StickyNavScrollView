@@ -16,18 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".activity.StickyNavScrollViewActivity1"/>
-
-        <activity android:name=".activity.StickyNavScrollViewActivity2"/>
-
-        <activity android:name=".activity.StickyNavScrollLayoutActivity1"/>
-
-        <activity android:name=".activity.StickyNavScrollLayoutActivity2"/>
-
-        <activity android:name=".activity.StickyNavPullToRefreshViewActivity"/>
-
-        <activity android:name=".activity.StickyNavPullToRefreshLayoutActivity"/>
+        <activity android:name=".activity.StickyNavScrollViewActivity1" />
+        <activity android:name=".activity.StickyNavScrollViewActivity2" />
+        <activity android:name=".activity.StickyNavScrollLayoutActivity1" />
+        <activity android:name=".activity.StickyNavScrollLayoutActivity2" />
+        <activity android:name=".activity.StickyNavPullToRefreshViewActivity" />
+        <activity android:name=".activity.StickyNavPullToRefreshLayoutActivity" />
+        <activity android:name=".activity.StickyNavMutlTabActivity"></activity>
     </application>
 
 </manifest>

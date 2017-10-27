@@ -1,10 +1,30 @@
-<android.support.v7.widget.RecyclerView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/id_stickynavlayout_innerscrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#44ff0000"
+    android:orientation="vertical"
     android:scrollbars="none">
 
-</android.support.v7.widget.RecyclerView>
+    <TextView
+        android:id="@+id/sticky_nav_tab_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#eeeeeeee"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="标题1"
+        android:textSize="18dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/id_stickynavlayout_innerscrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#44ff0000"
+        android:visibility="visible"
+        android:scrollbars="none">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

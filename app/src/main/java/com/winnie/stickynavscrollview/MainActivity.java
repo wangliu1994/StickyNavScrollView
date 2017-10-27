@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.winnie.stickynavscrollview.R;
+import com.winnie.stickynavscrollview.activity.StickyNavMutlTabActivity;
 import com.winnie.stickynavscrollview.activity.StickyNavPullToRefreshLayoutActivity;
 import com.winnie.stickynavscrollview.activity.StickyNavPullToRefreshViewActivity;
 import com.winnie.stickynavscrollview.activity.StickyNavScrollLayoutActivity1;
@@ -65,5 +66,10 @@ public class MainActivity extends AppCompatActivity {
     public void ClipChild(View view){
 //        Intent i = new Intent(this, StickyNavPullToRefreshLayoutActivity.class);
 //        startActivity(i);
+    }
+
+    public void StickyNavMutlTab(View view){
+        Intent i = new Intent(this, StickyNavMutlTabActivity.class);
+        startActivity(i);
     }
 }
