@@ -2,18 +2,23 @@ package com.winnie.library.stickynav.base;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.v4.view.MotionEventCompat;
+import android.support.v4.view.NestedScrollingChildHelper;
 import android.support.v4.view.NestedScrollingParent;
 import android.support.v4.view.NestedScrollingParentHelper;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.OverScroller;
 
 import com.winnie.library.R;
 import com.winnie.library.stickynav.constant.StickyConstant;
+import com.winnie.library.stickynav.layout.StickyNestScrollChildLayout;
 import com.winnie.library.stickynav.view.StickyNavScrollView;
 
 
@@ -33,9 +38,12 @@ public abstract class StickyNavScrollBaseLayout extends LinearLayout implements 
 
     /*-------------------构造函数------------------------*/
     public StickyNavScrollBaseLayout(Context context) {
-        super(context);
+        super(context, null);
         mScroller = new OverScroller(getContext());
         mParentHelper = new NestedScrollingParentHelper(this);
+        mChildHelper = new NestedScrollingChildHelper(this);
+
+        setNestedScrollingEnabled(true);
         setOrientation(VERTICAL);
         initView(context, null);
     }
@@ -44,8 +52,9 @@ public abstract class StickyNavScrollBaseLayout extends LinearLayout implements 
         super(context, attrs);
         mScroller = new OverScroller(getContext());
         mParentHelper = new NestedScrollingParentHelper(this);
+        mChildHelper = new NestedScrollingChildHelper(this);
+        setNestedScrollingEnabled(true);
         setOrientation(VERTICAL);
-
         if(attrs!= null) {
             TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.StickyNav);
             initView(context, array);
@@ -57,9 +66,11 @@ public abstract class StickyNavScrollBaseLayout extends LinearLayout implements 
     }
 
     public StickyNavScrollBaseLayout(Context context, TypedArray typedArray) {
-        super(context);
+        super(context, null);
         mScroller = new OverScroller(getContext());
         mParentHelper = new NestedScrollingParentHelper(this);
+        mChildHelper = new NestedScrollingChildHelper(this);
+        setNestedScrollingEnabled(true);
         setOrientation(VERTICAL);
         initView(context, typedArray);
     }
@@ -87,12 +98,21 @@ public abstract class StickyNavScrollBaseLayout extends LinearLayout implements 
         setMeasuredDimension(getMeasuredWidth(), getStickyHeadView().getMeasuredHeight()
                 + getStickyTabBar().getMeasuredHeight() + getStickyTabView().getMeasuredHeight());
 
+        mHeadViewHeight = getStickyHeadView().getMeasuredHeight();
         //getMeasuredHeight()在这里，因为setMeasuredDimension，所以拿到的是三部分高度之和
 //        int measureHeight = getMeasuredHeight();
 //        int height = getHeight();
 //        int headViewHeight = getStickyHeadView().getMeasuredHeight();
 //        int tabBarHeight = getStickyTabBar().getMeasuredHeight();
 //        int tabViewHeight1 = getStickyTabView().getMeasuredHeight();
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if(getScrollY() > 0){
+            getParent().requestDisallowInterceptTouchEvent(true);
+        }
+        return super.dispatchTouchEvent(ev);
     }
 
     private boolean hasTabView(){
@@ -307,4 +327,67 @@ public abstract class StickyNavScrollBaseLayout extends LinearLayout implements 
         return mParentHelper.getNestedScrollAxes();
     }
 
+    /*-----------------------------嵌套滑动------------------------------------*/
+    private NestedScrollingChildHelper mChildHelper;
+
+    @Override
+    public void setNestedScrollingEnabled(boolean enabled) {
+        mChildHelper.setNestedScrollingEnabled(enabled);
+    }
+
+    @Override
+    public boolean isNestedScrollingEnabled() {
+        return mChildHelper.isNestedScrollingEnabled();
+    }
+
+    @Override
+    public boolean startNestedScroll(int axes) {
+        if(StickyConstant.IS_DEBUG) {
+            Log.d(TAG, "startNestedScroll");
+        }
+
+        return mChildHelper.startNestedScroll(axes);
+    }
+
+    @Override
+    public void stopNestedScroll() {
+        if(StickyConstant.IS_DEBUG) {
+            Log.d(TAG, "stopNestedScroll");
+        }
+
+        mChildHelper.stopNestedScroll();
+    }
+
+    @Override
+    public boolean hasNestedScrollingParent() {
+        return mChildHelper.hasNestedScrollingParent();
+    }
+
+    @Override
+    public boolean dispatchNestedScroll(int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int[] offsetInWindow) {
+        if(StickyConstant.IS_DEBUG) {
+            Log.d(TAG, "dispatchNestedScroll");
+        }
+
+        return mChildHelper.dispatchNestedScroll(dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, offsetInWindow);
+    }
+
+    @Override
+    public boolean dispatchNestedPreScroll(int dx, int dy, int[] consumed, int[] offsetInWindow) {
+        if(StickyConstant.IS_DEBUG) {
+            Log.d(TAG, "dispatchNestedPreScroll");
+        }
+
+        return mChildHelper.dispatchNestedPreScroll(dx, dy, consumed, offsetInWindow);
+    }
+
+    @Override
+    public boolean dispatchNestedFling(float velocityX, float velocityY, boolean consumed) {
+        return mChildHelper.dispatchNestedFling(velocityX, velocityY, consumed);
+    }
+
+    @Override
+    public boolean dispatchNestedPreFling(float velocityX, float velocityY) {
+        return mChildHelper.dispatchNestedPreFling(velocityX, velocityY);
+    }
 }
