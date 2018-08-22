@@ -36,6 +36,11 @@ public abstract class StickyNavScrollBaseLayout extends LinearLayout implements 
     private int mStickyNavMarginTop = 0;
     private int mTabViewHeight;
 
+    //可以继续往下滑动
+    private boolean canScrollToBottom = true;
+    //可以继续往上滑动
+    private boolean canScrollToTop = false;
+
     /*-------------------构造函数------------------------*/
     public StickyNavScrollBaseLayout(Context context) {
         super(context, null);
@@ -108,11 +113,14 @@ public abstract class StickyNavScrollBaseLayout extends LinearLayout implements 
     }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        if(getScrollY() > 0){
-            getParent().requestDisallowInterceptTouchEvent(true);
+    public boolean canScrollVertically(int direction) {
+        if(direction < 0){
+            return canScrollToTop;
         }
-        return super.dispatchTouchEvent(ev);
+        if(direction > 0){
+            return canScrollToBottom;
+        }
+        return super.canScrollVertically(direction);
     }
 
     private boolean hasTabView(){
@@ -178,6 +186,14 @@ public abstract class StickyNavScrollBaseLayout extends LinearLayout implements 
         return scrollMaxHeight;
     }
 
+    public void directlyScrollTo(int x, int y) {
+        if (!mScroller.isFinished()) {
+            //把之前没完成的fling停止了
+            mScroller.abortAnimation();
+        }
+        scrollTo(x, y);
+    }
+
     @Override
     public void scrollTo(int x, int y) {
         if (y < 0) {
@@ -188,6 +204,12 @@ public abstract class StickyNavScrollBaseLayout extends LinearLayout implements 
         }
         if (y != getScrollY()) {
             super.scrollTo(x, y);
+        }
+
+        if(getScrollY() < getMaxScrollHeight()){
+            canScrollToTop = getScrollY() > 0;
+        }else {
+            canScrollToTop = true;
         }
     }
 
@@ -234,7 +256,7 @@ public abstract class StickyNavScrollBaseLayout extends LinearLayout implements 
 //            }
 //             return false;
 //        }
-        return !ViewCompat.canScrollVertically(view, -1);
+        return !view.canScrollVertically(-1);
     }
 
     /*------------------------嵌套滑动----------------------------*/
@@ -274,10 +296,23 @@ public abstract class StickyNavScrollBaseLayout extends LinearLayout implements 
             Log.d(TAG, "onNestedPreScroll");
         }
 
-        boolean hiddenTop = dy > 0 && getScrollY() < getMaxScrollHeight();//往上滑，头部还没有完全滑出界面
-        boolean showTop = dy < 0 && getScrollY() >= 0 && isScrollToTop(target);//往下滑，底部列表已经滑到顶了
+        if(getScrollY() < getMaxScrollHeight()){
+            canScrollToTop = getScrollY() > 0;
+            canScrollToBottom = true;
+        }else {
+            if(target instanceof StickyNestScrollChildLayout){
+                canScrollToBottom = true;
+            }else {
+                canScrollToBottom = target.canScrollVertically(1);
+            }
+            canScrollToTop = true;
+        }
 
-//        showTop = showTop && isTabViewScrollToTop();//底部列表滑到第一个item时头部才可以展示出来
+
+        //往下滑，头部还没有完全滑出界面
+        boolean hiddenTop = dy > 0 && getScrollY() < getMaxScrollHeight();
+        //往上滑，底部列表已经滑到顶了
+        boolean showTop = dy < 0 && getScrollY() >= 0 && isScrollToTop(target);
 
         if (hiddenTop || showTop) {
             scrollBy(0, dy);

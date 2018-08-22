@@ -32,12 +32,18 @@ public class StickyNavScrollLayoutActivity1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sticky_nav_scroll_layout1);
 
-        StickyNavScrollLayout mScrollView = (StickyNavScrollLayout) findViewById(R.id.sticky_nav_layout);
+        final StickyNavScrollLayout mScrollView = (StickyNavScrollLayout) findViewById(R.id.sticky_nav_layout);
         mHeaderView = (LinearLayout) findViewById(R.id.sticky_nav_head_view);
         mViewPager = (ViewPager)findViewById(R.id.sticky_nav_tab_view);
 
         initDatas();
 
+        mScrollView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mScrollView.directlyScrollTo(0, 500);
+            }
+        }, 2000);
     }
 
     private void initDatas()
