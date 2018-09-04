@@ -3,8 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/StickyNavScrollView.iml" filepath="$PROJECT_DIR$/StickyNavScrollView.iml" />
+      <module fileurl="file://D:\Code\Own_In_GitHab\StickyNavScrollView\StickyNavScrollView.iml" filepath="D:\Code\Own_In_GitHab\StickyNavScrollView\StickyNavScrollView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://D:\Code\Own_In_GitHab\StickyNavScrollView\app\app.iml" filepath="D:\Code\Own_In_GitHab\StickyNavScrollView\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
+      <module fileurl="file://D:\Code\Own_In_GitHab\StickyNavScrollView\library\library.iml" filepath="D:\Code\Own_In_GitHab\StickyNavScrollView\library\library.iml" />
     </modules>
   </component>
 </project>
