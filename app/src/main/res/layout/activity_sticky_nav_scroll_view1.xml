@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.winnie.library.stickynav.view.StickyNavScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:sticky="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/sticky_nav_layout"
+    sticky:navHeadView="@layout/view_sticky_nav_head"
+    sticky:navTabBar="@layout/view_sticky_tab_bar"
+    sticky:navTabView="@layout/view_pager">
+
+
+</com.winnie.library.stickynav.view.StickyNavScrollView>
+

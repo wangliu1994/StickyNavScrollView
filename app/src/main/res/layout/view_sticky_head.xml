@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/service_name"
+            android:layout_alignParentLeft="true"
+            android:textSize="17dp"
+            android:layout_weight="1"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:layout_marginRight="30dp"
+            android:text="服务名称，最多20个字！服务商部在做限制，我们不用管"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:text="￥"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:id="@+id/service_money_min"
+            android:text="100"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:text="- ￥"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:id="@+id/service_money_max"
+            android:text="1000"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/service_purchase"
+            android:textSize="12dp"
+            android:text="889人已购买"/>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/service_score_layout"
+            android:visibility="visible"
+            android:layout_marginLeft="10dp">
+
+            <ProgressBar
+                android:id="@+id/service_score"
+                android:layout_width="80dp"
+                android:layout_height="13dp"
+                android:indeterminate="false"
+                android:indeterminateOnly="false"
+                android:progress="100"/>
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="13dp" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:layout_marginLeft="5dp"
+                android:lines="1"
+                android:textSize="12dp"
+                android:visibility="visible"
+                android:layout_marginBottom="3dp"
+                android:text="很帅气(120)"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:layout_marginLeft="5dp"
+                android:lines="1"
+                android:textSize="12dp"
+                android:visibility="visible"
+                android:layout_marginBottom="3dp"
+                android:text="很耐心(120)"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:layout_marginLeft="5dp"
+                android:lines="1"
+                android:layout_marginBottom="3dp"
+                android:textSize="12dp"
+                android:id="@+id/service_impression1"
+                android:visibility="visible"
+                android:text="很帅气(120)"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:layout_marginLeft="5dp"
+                android:lines="1"
+                android:textSize="12dp"
+                android:visibility="visible"
+                android:layout_marginBottom="3dp"
+                android:text="很帅气(120)"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:layout_marginLeft="5dp"
+                android:lines="1"
+                android:textSize="12dp"
+                android:visibility="visible"
+                android:layout_marginBottom="3dp"
+                android:text="很耐心(120)"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:layout_marginLeft="5dp"
+                android:lines="1"
+                android:layout_marginBottom="3dp"
+                android:textSize="12dp"
+                android:visibility="visible"
+                android:text="很帅气(120)"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="3dp"
+                android:lines="1"
+                android:textSize="12dp"
+                android:visibility="visible"
+                android:text="很耐心(120)"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginLeft="5dp"
+                android:lines="1"
+                android:textSize="12dp"
+                android:visibility="visible"
+                android:id="@+id/service_impression3"
+                android:text="有范儿(120)"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="@color/gray"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:layout_marginBottom="15dp"
+            android:id="@+id/service_type"
+            android:text="服务方式：线上、到店、上门"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="14dp"
+            android:textSize="12dp"
+            android:id="@+id/service_position"
+            android:layout_marginBottom="6dp"
+            android:visibility="visible"
+            android:text="到店地址：重庆渝北区....."/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="14dp"
+            android:id="@+id/service_area"
+            android:text="上门范围：重庆渝北区范围内"
+            android:visibility="visible"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/gray"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="256dp"
+        android:background="#4400ff00"
+        android:gravity="center"
+        android:text="软件介绍"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="15dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true">
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:id="@+id/service_shop_icon"
+                    android:src="@color/gray"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerVertical="true"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/service_name_layout"
+                    android:gravity="center"
+                    android:layout_toRightOf="@+id/service_shop_icon">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/service_shop_name"
+                        android:textColor="#333333"
+                        android:text="昵称"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/service_shop_attestation"
+                        android:textSize="10dp"
+                        android:padding="3dp"
+                        android:text="认证"
+                        android:layout_marginLeft="6dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/service_shop_profession"
+                    android:textColor="#666666"
+                    android:textSize="14dp"
+                    android:text="职业"
+                    android:layout_toRightOf="@+id/service_shop_icon"
+                    android:layout_below="@+id/service_name_layout" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/service_user_fans"
+                        android:gravity="center"
+                        android:padding="3dp"
+                        android:textColor="#666666"
+                        android:textSize="12dp"
+                        android:text="粉丝"/>
+
+                    <View
+                        android:layout_width="1px"
+                        android:background="@color/gray"
+                        android:layout_height="match_parent"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/service_user_pos"
+                        android:gravity="center"
+                        android:padding="3dp"
+                        android:textColor="#666666"
+                        android:textSize="12dp"
+                        android:text="距离"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:padding="3dp"
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/service_dynamic_care_user"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/service_dynamic_topic"
+                android:textSize="13dp"
+                android:textColor="#ff5647"/>
+
+            <TextView
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/service_dynamic_sales"
+                android:textSize="13dp"
+                android:textColor="#999999"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:id="@+id/service_dynamic_content"
+            android:textSize="12dp"
+            android:text="动态内容"
+            android:textColor="#666666" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/service_dynamic_time"
+                android:textColor="#b0b0b0"
+                android:text="10-10"
+                android:textSize="11dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:id="@+id/service_dynamic_praises"
+                android:layout_marginLeft="10dp"
+                android:textColor="#b0b0b0"
+                android:textSize="11dp"
+                android:drawablePadding="5dp"
+                android:text="点赞"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/service_dynamic_comments"
+                android:layout_toLeftOf="@+id/service_dynamic_praises"
+                android:layout_marginLeft="15dp"
+                android:drawablePadding="5dp"
+                android:textColor="#b0b0b0"
+                android:textSize="11dp"
+                android:text="评价"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/service_dynamic_browses"
+                android:layout_toLeftOf="@+id/service_dynamic_comments"
+                android:layout_marginLeft="15dp"
+                android:textColor="#b0b0b0"
+                android:textSize="11dp"
+                android:drawablePadding="5dp"
+                android:text="查看"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/gray"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="15dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:textColor="#333333"
+                android:text="昵称"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:textColor="#999999"
+                android:text="10-10"
+                android:id="@+id/service_evaluate_time"
+                android:textSize="11dp" />
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:visibility="gone"
+            android:id="@+id/service_evaluate_score_layout"
+            android:layout_marginTop="10dp">
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:visibility="gone"
+            android:orientation="vertical"
+            android:id="@+id/service_evaluate_impression"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="13dp"
+            android:layout_marginTop="10dp"
+            android:textColor="#484848"
+            android:text="评价内容"
+            android:id="@+id/service_evaluate_content" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="13dp"
+            android:layout_marginTop="10dp"
+            android:text="我觉得也就一般般咯"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/gray"/>
+
+</LinearLayout>
