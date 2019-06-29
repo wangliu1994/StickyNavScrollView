@@ -3,11 +3,12 @@
     <!--Sticky id-->
     <item name="sticky_xrecycler" type="id" />
 
-    <!--StickyNav id-->
+    <!--StickyNav内部实用的 id-->
     <item name="sticky_nav_head_view_layout" type="id" />
     <item name="sticky_nav_tab_bar_layout" type="id" />
     <item name="sticky_nav_tab_view_layout" type="id" />
 
+    <!--外部使用的id-->
     <item name="sticky_nav_head_view" type="id" />
     <item name="sticky_nav_tab_bar" type="id" />
     <item name="sticky_nav_tab_view" type="id" />
