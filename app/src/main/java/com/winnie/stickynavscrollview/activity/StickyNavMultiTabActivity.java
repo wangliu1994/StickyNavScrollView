@@ -13,14 +13,19 @@ import com.winnie.stickynavscrollview.fragment.StickyTabFragment;
 
 import java.util.ArrayList;
 
-public class StickyNavMutlTabActivity extends AppCompatActivity {
+/**
+ *
+ * @author winnie
+ * @date 2017/5/5
+ */
+public class StickyNavMultiTabActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sticky_nav_mutl_tab);
 
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
+        final ViewPager viewPager = findViewById(R.id.view_pager);
 
         final ArrayList<Fragment> list = new ArrayList<>();
         for(int i=0; i<3; i++){
@@ -29,33 +34,18 @@ public class StickyNavMutlTabActivity extends AppCompatActivity {
 
         viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(), list));
 
-        findViewById(R.id.button1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewPager.setCurrentItem(0);
-            }
-        });
+        findViewById(R.id.button1).setOnClickListener(v -> viewPager.setCurrentItem(0));
 
-        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewPager.setCurrentItem(1);
-            }
-        });
+        findViewById(R.id.button2).setOnClickListener(v -> viewPager.setCurrentItem(1));
 
-        findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewPager.setCurrentItem(2);
-            }
-        });
+        findViewById(R.id.button3).setOnClickListener(v -> viewPager.setCurrentItem(2));
 
     }
 
     private class MyPagerAdapter extends FragmentPagerAdapter {
         private ArrayList<Fragment> list;
 
-        public MyPagerAdapter(FragmentManager fm, ArrayList list) {
+        MyPagerAdapter(FragmentManager fm, ArrayList<Fragment> list) {
             super(fm);
             this.list = list;
         }

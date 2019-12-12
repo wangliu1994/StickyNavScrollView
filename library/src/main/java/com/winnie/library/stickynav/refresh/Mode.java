@@ -1,9 +1,10 @@
 package com.winnie.library.stickynav.refresh;
 
 /**
- * Created by winnie on 2017/5/19.
+ *
+ * @author winnie
+ * @date 2017/5/19
  */
-
 public enum Mode {
 
     /**

@@ -20,10 +20,11 @@ import com.winnie.library.stickynav.refresh.StickyPullToRefreshRotateHeader;
 
 
 /**
- * Created by winnie on 2017/5/19.
+ *
+ * @author winnie
+ * @date 2017/5/19
  * 带悬浮吸顶的下拉刷新容器基类
  */
-
 public abstract class StickyPullToRefreshBaseLayout
         <T extends StickyNavScrollBaseLayout> extends LinearLayout {
 
@@ -50,7 +51,8 @@ public abstract class StickyPullToRefreshBaseLayout
 
     private OnRefreshListener mOnRefreshListener;
     private OnPullEventListener mOnPullEventListener;
-    private OnPullDownListener mDownListener;;
+    private OnPullDownListener mDownListener;
+    ;
 
     private SmoothScrollRunnable mCurrentSmoothScrollRunnable;
 
@@ -81,7 +83,6 @@ public abstract class StickyPullToRefreshBaseLayout
     protected final void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         //把headerView隐藏起来，其实用的是padding的方式 设置为负值 就到屏幕顶部的外面了
-
         post(new Runnable() {
             @Override
             public void run() {
@@ -129,11 +130,11 @@ public abstract class StickyPullToRefreshBaseLayout
     /**
      * 使用addViewInternal()是因为 addView()被我重载了
      */
-    private final void addViewInternal(View child, int index, ViewGroup.LayoutParams params) {
+    private void addViewInternal(View child, int index, ViewGroup.LayoutParams params) {
         super.addView(child, index, params);
     }
 
-    private final void addViewInternal(View child, ViewGroup.LayoutParams params) {
+    private void addViewInternal(View child, ViewGroup.LayoutParams params) {
         super.addView(child, -1, params);
     }
 
@@ -149,7 +150,7 @@ public abstract class StickyPullToRefreshBaseLayout
         }
     }
 
-    private final void refreshLoadingViewsSize() {
+    private void refreshLoadingViewsSize() {
         final int maximumPullScroll = (int) (getMaximumPullScroll() * 1f);
 
 //        int pLeft = getPaddingLeft();
@@ -193,18 +194,18 @@ public abstract class StickyPullToRefreshBaseLayout
         return mLoadingView.getMeasuredHeight();
     }
 
-    private final boolean isPullToRefreshEnabled() {
+    private boolean isPullToRefreshEnabled() {
         return mMode.permitsPullToRefresh();
     }
 
     private boolean isReadyForPull() {
-        if(mMode == Mode.PULL_FROM_START){
+        if (mMode == Mode.PULL_FROM_START) {
             return mRefreshableView.getScrollY() == 0;
         }
         return false;
     }
 
-    private final boolean isRefreshing() {
+    private boolean isRefreshing() {
         return mState == State.REFRESHING || mState == State.MANUAL_REFRESHING;
     }
 
@@ -212,7 +213,7 @@ public abstract class StickyPullToRefreshBaseLayout
         setRefreshing(true);
     }
 
-    private final void setRefreshing(boolean doScroll) {
+    private void setRefreshing(boolean doScroll) {
         if (!isRefreshing()) {
             setState(State.MANUAL_REFRESHING, doScroll);
         }
@@ -259,8 +260,10 @@ public abstract class StickyPullToRefreshBaseLayout
                     diffX = x - mLastMotionX;
                     absDiffY = Math.abs(diffY);
 
-                    if (absDiffY > mTouchSlop && (!mFilterTouchEvents || absDiffY > Math.abs(diffX))) {
-                        if (diffY >= 1f) {//下滑才拦截
+                    if (absDiffY > mTouchSlop &&
+                            (!mFilterTouchEvents || absDiffY > Math.abs(diffX))) {
+                        //下滑才拦截
+                        if (diffY >= 1f) {
                             mLastMotionY = y;
                             mLastMotionX = x;
                             mIsBeingDragged = true;
@@ -269,6 +272,8 @@ public abstract class StickyPullToRefreshBaseLayout
                 }
                 break;
             }
+            default:
+                break;
         }
         return mIsBeingDragged;
     }
@@ -287,7 +292,8 @@ public abstract class StickyPullToRefreshBaseLayout
         }
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN: {
-                if (isReadyForPull()) {//按下 开始下拉
+                //按下 开始下拉
+                if (isReadyForPull()) {
                     mLastMotionY = mInitialMotionY = event.getY();
                     mLastMotionX = mInitialMotionX = event.getX();
                     return true;
@@ -304,12 +310,14 @@ public abstract class StickyPullToRefreshBaseLayout
                 }
                 break;
             }
+            //停止下拉的时候
             case MotionEvent.ACTION_CANCEL:
-            case MotionEvent.ACTION_UP: { //停止下拉的时候
+            case MotionEvent.ACTION_UP: {
                 if (mIsBeingDragged) {
                     mIsBeingDragged = false;
                     if (mState == State.RELEASE_TO_REFRESH && (null != mOnRefreshListener)) {
-                        setState(State.REFRESHING, true);//放下手指开始回调，执行我们的回调任务
+                        //放下手指开始回调，执行我们的回调任务
+                        setState(State.REFRESHING, true);
                         return true;
                     }
 
@@ -318,12 +326,15 @@ public abstract class StickyPullToRefreshBaseLayout
                         return true;
                     }
 
-                    setState(State.RESET); //恢复到原来的UI状态
+                    //恢复到原来的UI状态
+                    setState(State.RESET);
 
                     return true;
                 }
                 break;
             }
+            default:
+                break;
         }
 
         return false;
@@ -339,7 +350,8 @@ public abstract class StickyPullToRefreshBaseLayout
 
         //计算下拉移动了多少
         switch (mMode) {
-            case PULL_FROM_START://下拉
+            //下拉
+            case PULL_FROM_START:
             default:
                 newScrollValue = Math.round(Math.min(
                         initialMotionValue - lastMotionValue, 0) / FRICTION);
@@ -364,7 +376,7 @@ public abstract class StickyPullToRefreshBaseLayout
         }
     }
 
-    private final void setHeaderScroll(int value) {
+    private void setHeaderScroll(int value) {
 
         if (mDownListener != null) {
             mDownListener.onPullDown(value);
@@ -374,7 +386,8 @@ public abstract class StickyPullToRefreshBaseLayout
         value = Math.max(-maximumPullScroll, value);
 
         if (mLayoutVisibilityChangesEnabled) {
-            if (value < 0) { //有位移才显示
+            //有位移才显示
+            if (value < 0) {
                 mLoadingView.setVisibility(View.VISIBLE);
             } else {
                 mLoadingView.setVisibility(View.INVISIBLE);
@@ -408,6 +421,7 @@ public abstract class StickyPullToRefreshBaseLayout
                 onRefreshing(params[0]);
                 break;
             case OVERSCROLLING:
+            default:
                 break;
         }
 
@@ -438,19 +452,20 @@ public abstract class StickyPullToRefreshBaseLayout
 
         if (doScroll) {
             if (mShowViewWhileRefreshing) {
-
                 // Call Refresh Listener when the Scroll has finished
                 OnSmoothScrollFinishedListener listener = new OnSmoothScrollFinishedListener() {
                     @Override
                     public void onSmoothScrollFinished() {
-                        callRefreshListener();//回调接口执行
+                        //回调接口执行
+                        callRefreshListener();
                     }
                 };
 
                 smoothScrollTo(-getHeaderSize(), listener);
 
             } else {
-                smoothScrollTo(0);//回到原来的位置
+                //回到原来的位置
+                smoothScrollTo(0);
             }
         } else {
 
@@ -469,7 +484,8 @@ public abstract class StickyPullToRefreshBaseLayout
 
     private void callRefreshListener() {
         if (null != mOnRefreshListener) {
-            mOnRefreshListener.onRefresh();//回调
+            //回调
+            mOnRefreshListener.onRefresh();
         }
     }
 
@@ -484,11 +500,11 @@ public abstract class StickyPullToRefreshBaseLayout
         smoothScrollTo(scrollValue, SMOOTH_SCROLL_DURATION_MS, 0, listener);
     }
 
-    private final void smoothScrollTo(int scrollValue, long duration) {
+    private void smoothScrollTo(int scrollValue, long duration) {
         smoothScrollTo(scrollValue, duration, 0, null);
     }
 
-    private final void smoothScrollTo(int newScrollValue, long duration, long delayMillis,
+    private void smoothScrollTo(int newScrollValue, long duration, long delayMillis,
                                       OnSmoothScrollFinishedListener listener) {
         if (null != mCurrentSmoothScrollRunnable) {
             mCurrentSmoothScrollRunnable.stop();
@@ -501,7 +517,8 @@ public abstract class StickyPullToRefreshBaseLayout
             if (null == mScrollAnimationInterpolator) {
                 mScrollAnimationInterpolator = new DecelerateInterpolator();
             }
-            mCurrentSmoothScrollRunnable = new SmoothScrollRunnable(oldScrollValue, newScrollValue, duration, listener);
+            mCurrentSmoothScrollRunnable = new SmoothScrollRunnable(
+                    oldScrollValue, newScrollValue, duration, listener);
 
             if (delayMillis > 0) {
                 postDelayed(mCurrentSmoothScrollRunnable, delayMillis);
@@ -522,7 +539,8 @@ public abstract class StickyPullToRefreshBaseLayout
         private long mStartTime = -1;
         private int mCurrentY = -1;
 
-        public SmoothScrollRunnable(int fromY, int toY, long duration, OnSmoothScrollFinishedListener listener) {
+        SmoothScrollRunnable(int fromY, int toY, long duration,
+                             OnSmoothScrollFinishedListener listener) {
             mScrollFromY = fromY;
             mScrollToY = toY;
             mInterpolator = mScrollAnimationInterpolator;
@@ -532,7 +550,6 @@ public abstract class StickyPullToRefreshBaseLayout
 
         @Override
         public void run() {
-
             /**
              * 第一次启动需要初始化mStartTime
              * 其余的做Y轴移动处理
@@ -559,7 +576,7 @@ public abstract class StickyPullToRefreshBaseLayout
             }
         }
 
-        public void stop() {
+        void stop() {
             mContinueRunning = false;
             removeCallbacks(this);
         }
@@ -579,7 +596,7 @@ public abstract class StickyPullToRefreshBaseLayout
     }
 
 
-    public interface OnRefreshListener{
+    public interface OnRefreshListener {
         void onRefresh();
     }
 
@@ -589,7 +606,7 @@ public abstract class StickyPullToRefreshBaseLayout
 
 
     public interface OnPullEventListener {
-         void onPullEvent(State state, Mode direction);
+        void onPullEvent(State state, Mode direction);
     }
 
     public void setOnPullEventListener(OnPullEventListener listener) {

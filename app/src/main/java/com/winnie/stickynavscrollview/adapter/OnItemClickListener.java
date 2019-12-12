@@ -4,9 +4,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by winnie on 2017/5/5.
+ *
+ * @author winnie
+ * @date 2017/5/5
  */
-
 public interface OnItemClickListener<T>
 {
     void onItemClick(ViewGroup parent, View view, T t, int position);

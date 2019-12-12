@@ -1,9 +1,10 @@
 package com.winnie.library.stickynav.refresh;
 
 /**
- * Created by winnie on 2017/5/19.
+ *
+ * @author winnie
+ * @date 2017/5/19
  */
-
 public enum State {
 
     /**
@@ -28,7 +29,7 @@ public enum State {
 
     /**
      * 调用 setRefreshing()方法
-     * {@link com.winnie.stickynav.layout.StickyPullToRefreshLayout#setRefreshing()}方法
+     * {@link com.winnie.library.stickynav.base.StickyPullToRefreshBaseLayout#setRefreshing()}方法
      */
     MANUAL_REFRESHING(0x9),
 

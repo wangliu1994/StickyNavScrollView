@@ -11,9 +11,10 @@ import com.winnie.stickynavscrollview.R;
 import java.util.List;
 
 /**
- * Created by winnie on 2017/7/4.
+ *
+ * @author winnie
+ * @date 2017/7/4
  */
-
 public class GridTestAdapter extends BaseAdapter {
 
     private Context context;

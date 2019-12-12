@@ -8,10 +8,11 @@ import com.winnie.library.stickynav.base.StickyPullToRefreshBaseLayout;
 
 
 /**
- * Created by winnie on 2017/5/19.
+ *
+ * @author winnie
+ * @date 2017/5/19
  * 带悬浮吸顶的下拉刷新控件
  */
-
 public class StickyPullToRefreshView extends StickyPullToRefreshBaseLayout<StickyNavScrollView> {
 
     public StickyPullToRefreshView(Context context) {
@@ -24,7 +25,6 @@ public class StickyPullToRefreshView extends StickyPullToRefreshBaseLayout<Stick
 
     @Override
     protected StickyNavScrollView createRefreshableView(Context context, TypedArray typedArray) {
-        StickyNavScrollView refreshView = new StickyNavScrollView(context, typedArray);
-        return refreshView;
+        return new StickyNavScrollView(context, typedArray);
     }
 }

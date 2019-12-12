@@ -1,6 +1,7 @@
 package com.winnie.stickynavscrollview.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +13,10 @@ import com.winnie.stickynavscrollview.R;
 import java.util.List;
 
 /**
- * Created by winnie on 2017/7/4.
+ *
+ * @author winnie
+ * @date 2017/7/4
  */
-
 public class RecyclerTestAdapter extends RecyclerView.Adapter<RecyclerTestAdapter.MyViewHolder> {
 
     private Context context;
@@ -25,8 +27,9 @@ public class RecyclerTestAdapter extends RecyclerView.Adapter<RecyclerTestAdapte
         this.data = data;
     }
 
+    @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.recycler_item, parent, false);
         return new MyViewHolder(view);
     }
@@ -45,9 +48,9 @@ public class RecyclerTestAdapter extends RecyclerView.Adapter<RecyclerTestAdapte
 
         GridView gridView;
 
-        public MyViewHolder(View itemView) {
+        MyViewHolder(View itemView) {
             super(itemView);
-            gridView = (GridView) itemView.findViewById(R.id.gridview);
+            gridView = itemView.findViewById(R.id.gridview);
         }
     }
 }

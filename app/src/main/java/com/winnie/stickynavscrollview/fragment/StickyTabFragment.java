@@ -1,6 +1,7 @@
 package com.winnie.stickynavscrollview.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -13,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.winnie.stickynavscrollview.R;
-import com.winnie.stickynavscrollview.adapter.CommonAdapter;
+import com.winnie.stickynavscrollview.adapter.BaseCommonAdapter;
 import com.winnie.stickynavscrollview.adapter.RecyclerTestAdapter;
 import com.winnie.stickynavscrollview.adapter.TestPagerAdapter;
 import com.winnie.stickynavscrollview.adapter.ViewHolder;
@@ -23,7 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by winnie on 2017/10/26.
+ * @author winnie
+ * @date 2017/10/26
  */
 
 public class StickyTabFragment extends Fragment {
@@ -34,10 +36,10 @@ public class StickyTabFragment extends Fragment {
 
     private List<String> mDatas = new ArrayList<String>();
 
-    private int index;
+    private int index = 0;
 
 
-    private String[] mTitles = new String[] { "简介", "评价", "相关" };
+    private String[] mTitles = new String[]{"简介", "评价", "相关"};
     private ViewPager mViewPager;
     private FragmentStatePagerAdapter mAdapter;
     private TabFragment[] mFragments = new TabFragment[mTitles.length];
@@ -45,10 +47,10 @@ public class StickyTabFragment extends Fragment {
     private TextView mTextView;
 
 
-    public static StickyTabFragment newInstance(int index){
+    public static StickyTabFragment newInstance(int index) {
         StickyTabFragment fragment = new StickyTabFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt("index", index +1);
+        bundle.putInt("index", index + 1);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -56,14 +58,15 @@ public class StickyTabFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         Bundle bundle = getArguments();
-        index = bundle.getInt("index");
+        if (bundle != null) {
+            index = bundle.getInt("index");
+        }
     }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.sticky_nav_tab_fragment, container, false);
 
         mViewPager = view.findViewById(R.id.sticky_nav_tab_view);
@@ -77,9 +80,10 @@ public class StickyTabFragment extends Fragment {
 
     }
 
-    //这样可以正常展示列表
-    private void initSingleList(){
-
+    /**
+     * 这样可以正常展示列表
+     */
+    private void initSingleList() {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         int temp = index * 100;
@@ -87,7 +91,7 @@ public class StickyTabFragment extends Fragment {
             mDatas.add(mTitle + " -> " + i);
         }
 
-        mRecyclerView.setAdapter(new CommonAdapter<String>(getActivity(), R.layout.item, mDatas) {
+        mRecyclerView.setAdapter(new BaseCommonAdapter<String>(getActivity(), R.layout.item, mDatas) {
             @Override
             public void convert(ViewHolder holder, String o) {
                 holder.setText(R.id.id_info, o);
@@ -97,8 +101,10 @@ public class StickyTabFragment extends Fragment {
         mRecyclerView.setAdapter(new RecyclerTestAdapter(getContext(), mDatas));
     }
 
-    //这样可以正常展示列表
-    private void initViewPager(){
+    /**
+     * 这样可以正常展示列表
+     */
+    private void initViewPager() {
         ArrayList<View> views = new ArrayList<>();
         for (int i = 0; i < mTitles.length; i++) {
             TestFragmentView viewTemp = new TestFragmentView(getContext(), i);
@@ -111,7 +117,7 @@ public class StickyTabFragment extends Fragment {
 
 
     //这样不能正常展示列表  解决方案：使用getChildFragmentManager()  而不是getActivity().getSupportFragmentManager()
-    private void initViewPager1(){
+    private void initViewPager1() {
         for (int i = 0; i < mTitles.length; i++) {
             mFragments[i] = TabFragment.newInstance(mTitles[i]);
         }

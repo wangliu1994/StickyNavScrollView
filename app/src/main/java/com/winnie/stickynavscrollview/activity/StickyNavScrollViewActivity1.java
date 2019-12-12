@@ -16,9 +16,10 @@ import com.winnie.stickynavscrollview.view.StickyTabViewPager;
 
 
 /**
- * Created by winnie on 2017/5/5.
+ *
+ * @author winnie
+ * @date 2017/5/5
  */
-
 public class StickyNavScrollViewActivity1 extends AppCompatActivity {
 
     private String[] mTitles = new String[] { "简介", "评价", "相关" };
@@ -33,25 +34,21 @@ public class StickyNavScrollViewActivity1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sticky_nav_scroll_view1);
 
-        mScrollView = (StickyNavScrollView) findViewById(R.id.sticky_nav_layout);
+        mScrollView = findViewById(R.id.sticky_nav_layout);
         mViewPager = (StickyTabViewPager) mScrollView.getTabView();
         mViewPager.setTag("haha");
         View view = mScrollView.findViewWithTag("haha");
 
-        initDatas();
-
+        initData();
     }
 
-    private void initDatas()
-    {
+    private void initData() {
 
-        for (int i = 0; i < mTitles.length; i++)
-        {
+        for (int i = 0; i < mTitles.length; i++) {
             mFragments[i] = TabFragment.newInstance(mTitles[i]);
         }
 
-        mAdapter = new FragmentPagerAdapter(getSupportFragmentManager())
-        {
+        mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public int getCount()
             {

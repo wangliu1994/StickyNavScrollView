@@ -15,29 +15,50 @@ import com.winnie.library.stickynav.base.StickyNavScrollBaseLayout;
 
 
 /**
- * Created by winnie on 2017/5/2.
+ *
+ * @author winnie
+ * @date 2017/5/2
  * 通过嵌套滑动实现的悬浮吸顶菜单栏通用控件
  */
-
+@SuppressWarnings("unused")
 public class StickyNavScrollLayout extends StickyNavScrollBaseLayout implements NestedScrollingParent {
 
     private static final String TAG = StickyNavScrollLayout.class.getSimpleName();
 
     private StickyNestScrollChildLayout mNestedScrollChildLayout;
 
-    private LinearLayout mStickyHeadViewLayout;//头部
+    /**
+     * 头部
+     */
+    private LinearLayout mStickyHeadViewLayout;
 
-    private FrameLayout mStickyTabBarLayout;//悬浮部
+    /**
+     * 悬浮部
+     */
+    private FrameLayout mStickyTabBarLayout;
 
-    private FrameLayout mStickyTabViewLayout;//底部
+    /**
+     * 底部
+     */
+    private FrameLayout mStickyTabViewLayout;
 
-//    private View mStickyHeadView;//头部
-//
-//    private View mStickyTabBar;//悬浮部
-//
-//    private View mStickyTabView;//底部
+    /**
+     * 头部
+     */
+    private View mStickyHeadView;
 
-    /*-------------------构造函数------------------------*/
+    /**
+     * 悬浮部
+     */
+    private View mStickyTabBar;
+
+    /**
+     * 底部
+     */
+    private View mStickyTabView;
+
+
+    /**-------------------------------------------构造函数-----------------------------------------------**/
     public StickyNavScrollLayout(Context context) {
         super(context);
     }
@@ -53,9 +74,9 @@ public class StickyNavScrollLayout extends StickyNavScrollBaseLayout implements 
     @Override
     protected void initView(Context context, TypedArray typedArray) {
         LayoutInflater.from(context).inflate(R.layout.sticky_nav_scrollview, this);
-        mStickyHeadViewLayout = (LinearLayout) findViewById(R.id.sticky_nav_head_view_layout);
-        mStickyTabBarLayout = (FrameLayout) findViewById(R.id.sticky_nav_tab_bar_layout);
-        mStickyTabViewLayout = (FrameLayout) findViewById(R.id.sticky_nav_tab_view_layout);
+        mStickyHeadViewLayout = findViewById(R.id.sticky_nav_head_view_layout);
+        mStickyTabBarLayout = findViewById(R.id.sticky_nav_tab_bar_layout);
+        mStickyTabViewLayout = findViewById(R.id.sticky_nav_tab_view_layout);
     }
 
     @Override
@@ -82,7 +103,7 @@ public class StickyNavScrollLayout extends StickyNavScrollBaseLayout implements 
         return mStickyTabViewLayout;
     }
 
-    /*--------------------------内部设置了布局，要更改添加进来的布局---------------------------------*/
+    /**--------------------------内部设置了布局，要更改添加进来的布局---------------------------------*/
     @Override
     public void addView(View child) {
         int id = child.getId();
@@ -130,11 +151,11 @@ public class StickyNavScrollLayout extends StickyNavScrollBaseLayout implements 
     /**
      * 使用addViewInternal()是因为 addView()被我重载了
      */
-    private final void addViewInternal(View child, int index, ViewGroup.LayoutParams params) {
+    private void addViewInternal(View child, int index, ViewGroup.LayoutParams params) {
         super.addView(child, index, params);
     }
 
-    private final void addViewInternal(View child, ViewGroup.LayoutParams params) {
+    private void addViewInternal(View child, ViewGroup.LayoutParams params) {
         super.addView(child, -1, params);
     }
 

@@ -65,7 +65,7 @@ public class StickyNavPullToRefreshViewActivity extends AppCompatActivity {
 
         mPullView.getRefreshableView().setScrollViewListener(new StickyNavScrollBaseLayout.ScrollViewListener() {
             @Override
-            public void onScrollChanged(int x, int y, int oldx, int oldy) {
+            public void onScrollChanged(int x, int y, int oldX, int oldY) {
 
             }
         });

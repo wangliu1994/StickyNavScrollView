@@ -22,7 +22,7 @@
         <activity android:name=".activity.StickyNavScrollLayoutActivity2" />
         <activity android:name=".activity.StickyNavPullToRefreshViewActivity" />
         <activity android:name=".activity.StickyNavPullToRefreshLayoutActivity" />
-        <activity android:name=".activity.StickyNavMutlTabActivity"></activity>
+        <activity android:name=".activity.StickyNavMultiTabActivity"></activity>
     </application>
 
 </manifest>

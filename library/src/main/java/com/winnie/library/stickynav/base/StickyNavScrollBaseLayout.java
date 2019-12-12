@@ -2,6 +2,7 @@ package com.winnie.library.stickynav.base;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.annotation.NonNull;
 import android.support.v4.view.NestedScrollingChildHelper;
 import android.support.v4.view.NestedScrollingParent;
 import android.support.v4.view.NestedScrollingParentHelper;
@@ -19,10 +20,12 @@ import com.winnie.library.stickynav.view.StickyNavScrollView;
 
 
 /**
- * Created by winnie on 2017/5/10.
+ *
+ * @author winnie
+ * @date 2017/5/10
  * 通过嵌套滑动实现的悬浮吸顶菜单栏通用控件基类
  */
-
+@SuppressWarnings("unused")
 public abstract class StickyNavScrollBaseLayout extends LinearLayout implements NestedScrollingParent, IStickyBaseListener {
     private static final String TAG = StickyNavScrollView.class.getSimpleName();
 
@@ -32,12 +35,17 @@ public abstract class StickyNavScrollBaseLayout extends LinearLayout implements 
     private int mStickyNavMarginTop = 0;
     private int mTabViewHeight;
 
-    //可以继续往下滑动
+    /**
+     * 可以继续往下滑动
+     */
     private boolean canScrollToBottom = true;
-    //可以继续往上滑动
+
+    /**
+     * 可以继续往上滑动
+     */
     private boolean canScrollToTop = false;
 
-    /*-------------------构造函数------------------------*/
+    /**---------------------------------------------------构造函数----------------------------------------------**/
     public StickyNavScrollBaseLayout(Context context) {
         super(context, null);
         mScroller = new OverScroller(getContext());
@@ -81,7 +89,7 @@ public abstract class StickyNavScrollBaseLayout extends LinearLayout implements 
     protected abstract ViewGroup getStickyTabBar();
     protected abstract ViewGroup getStickyTabView();
 
-    /*------------------------------悬浮吸顶--------------------------------*/
+    /**------------------------------------------------悬浮吸顶------------------------------------------------**/
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -120,16 +128,11 @@ public abstract class StickyNavScrollBaseLayout extends LinearLayout implements 
     }
 
     private boolean hasTabView(){
-
         if(getStickyTabView() == null){
             return false;
         }
 
-        if(getStickyTabView().getChildCount() <= 0) {
-            return false;
-        }
-
-        return true;
+        return getStickyTabView().getChildCount() > 0;
     }
 
     @Override
@@ -154,7 +157,14 @@ public abstract class StickyNavScrollBaseLayout extends LinearLayout implements 
     }
 
     public interface ScrollViewListener {
-        void onScrollChanged(int x, int y, int oldx, int oldy);
+        /**
+         * 滑动监听
+         * @param x x
+         * @param y y
+         * @param oldX oldX
+         * @param oldY oldY
+         */
+        void onScrollChanged(int x, int y, int oldX, int oldY);
     }
 
     /**
@@ -218,13 +228,13 @@ public abstract class StickyNavScrollBaseLayout extends LinearLayout implements 
     }
 
     @Override
-    //TODO 底部列表滑到第一个item时头部才可以展示出来
     public boolean isNavSticky() {
+        //TODO 底部列表滑到第一个item时头部才可以展示出来
         return getScrollY() >= getMaxScrollHeight();
     }
 
-    //TODO 底部列表滑到第一个item时头部才可以展示出来
     private boolean isTabViewScrollToTop(){
+        //TODO 底部列表滑到第一个item时头部才可以展示出来
         boolean flag = true;
         ViewGroup tabView = getStickyTabView();
         if(tabView.getChildAt(0) != null){
@@ -255,11 +265,11 @@ public abstract class StickyNavScrollBaseLayout extends LinearLayout implements 
         return !view.canScrollVertically(-1);
     }
 
-    /*------------------------嵌套滑动----------------------------*/
+    /**---------------------------------------------------嵌套滑动---------------------------------------------------**/
     private NestedScrollingParentHelper mParentHelper;
 
     @Override
-    public boolean onStartNestedScroll(View child, View target, int nestedScrollAxes) {
+    public boolean onStartNestedScroll(@NonNull View child, @NonNull View target, int nestedScrollAxes) {
         if(StickyConstant.IS_DEBUG) {
             Log.d(TAG, "onStartNestedScroll");
         }
@@ -271,7 +281,7 @@ public abstract class StickyNavScrollBaseLayout extends LinearLayout implements 
     }
 
     @Override
-    public void onNestedScrollAccepted(View child, View target, int axes) {
+    public void onNestedScrollAccepted(@NonNull View child, @NonNull View target, int axes) {
         if(StickyConstant.IS_DEBUG) {
             Log.d(TAG, "onNestedScrollAccepted");
         }
@@ -279,7 +289,7 @@ public abstract class StickyNavScrollBaseLayout extends LinearLayout implements 
     }
 
     @Override
-    public void onStopNestedScroll(View target) {
+    public void onStopNestedScroll(@NonNull View target) {
         if(StickyConstant.IS_DEBUG) {
             Log.d(TAG, "onStopNestedScroll");
         }
@@ -287,7 +297,7 @@ public abstract class StickyNavScrollBaseLayout extends LinearLayout implements 
     }
 
     @Override
-    public void onNestedPreScroll(View target, int dx, int dy, int[] consumed) {
+    public void onNestedPreScroll(@NonNull View target, int dx, int dy, @NonNull int[] consumed) {
         if(StickyConstant.IS_DEBUG) {
             Log.d(TAG, "onNestedPreScroll");
         }
@@ -318,14 +328,14 @@ public abstract class StickyNavScrollBaseLayout extends LinearLayout implements 
     }
 
     @Override
-    public void onNestedScroll(View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
+    public void onNestedScroll(@NonNull View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
         if(StickyConstant.IS_DEBUG) {
             Log.d(TAG, "onNestedScroll");
         }
     }
 
     @Override
-    public boolean onNestedPreFling(View target, float velocityX, float velocityY) {
+    public boolean onNestedPreFling(@NonNull View target, float velocityX, float velocityY) {
         if(StickyConstant.IS_DEBUG) {
             Log.d(TAG, "onNestedFling");
         }
@@ -333,13 +343,16 @@ public abstract class StickyNavScrollBaseLayout extends LinearLayout implements 
     }
 
     @Override
-    public boolean onNestedFling(View target, float velocityX, float velocityY, boolean consumed) {
+    public boolean onNestedFling(@NonNull View target, float velocityX, float velocityY, boolean consumed) {
         if(StickyConstant.IS_DEBUG) {
             Log.d(TAG, "onNestedPreFling");
         }
 
-        boolean hiddenTop = velocityY > 0 && getScrollY() < getMaxScrollHeight(); //往上滑，头部还没有完全滑出界面
-        boolean showTop = velocityY < 0 && getScrollY() >= 0 && isScrollToTop(target);  //往下滑，底部列表已经滑到顶了
+        //往上滑，头部还没有完全滑出界面
+        boolean hiddenTop = velocityY > 0 && getScrollY() < getMaxScrollHeight();
+
+        //往下滑，底部列表已经滑到顶了
+        boolean showTop = velocityY < 0 && getScrollY() >= 0 && isScrollToTop(target);
 
 //        showTop = showTop && isTabViewScrollToTop();//底部列表滑到第一个item时头部才可以展示出来
 
@@ -358,7 +371,7 @@ public abstract class StickyNavScrollBaseLayout extends LinearLayout implements 
         return mParentHelper.getNestedScrollAxes();
     }
 
-    /*-----------------------------嵌套滑动------------------------------------*/
+    /**----------------------------------------------------嵌套滑动---------------------------------------------**/
     private NestedScrollingChildHelper mChildHelper;
 
     @Override

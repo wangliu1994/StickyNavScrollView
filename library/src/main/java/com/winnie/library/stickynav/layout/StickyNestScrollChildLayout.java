@@ -17,29 +17,66 @@ import com.winnie.library.stickynav.constant.StickyConstant;
 
 
 /**
- * Created by winnie on 2017/5/2.
+ *
+ * @author winnie
+ * @date 2017/5/2
  * 嵌套滑动子布局
  */
+@SuppressWarnings("unused")
 public class StickyNestScrollChildLayout extends LinearLayout implements NestedScrollingChild {
     private static final String TAG = StickyNestScrollChildLayout.class.getSimpleName();
     private static final int INVALID_POINTER = -1;
 
     private GestureDetector mGestureDetector;
 
-    private VelocityTracker mVelocityTracker;//根绝Event的每一个Action计算抛事件的抛出速率
-    private int mMinimumFlingVelocity;//抛事件的最小速率
-    private int mMaximumFlingVelocity;//抛事件的最大速率
+    /**
+     * 根绝Event的每一个Action计算抛事件的抛出速率
+     */
+    private VelocityTracker mVelocityTracker;
 
-    private int[] mConsumed = new int[2];//嵌套滑动父布局消耗的距离
-    private int[] mOffset = new int[2];//嵌套滑动后自己在父布局的位置
+    /**
+     * 抛事件的最小速率
+     */
+    private int mMinimumFlingVelocity;
+    /**
+     * 抛事件的最大速率
+     */
+    private int mMaximumFlingVelocity;
 
-    private int mLastMotionX;//当前一次touchEvent的X值坐标
-    private int mLastMotionY;//当前一次touchEvent的Y值坐标
-    private int mNestedYOffset;//嵌套滑动的距离
+    /**
+     * 嵌套滑动父布局消耗的距离
+     */
+    private int[] mConsumed = new int[2];
+    /**
+     * 嵌套滑动后自己在父布局的位置
+     */
+    private int[] mOffset = new int[2];
 
-    private boolean mIsBeingDragged = false;//是否被拖动
-    private int mActivePointerId = INVALID_POINTER;//多手指点击的点击点
-    private int mTouchSlop;//能让我们判断当前移动为一次Scroll的一个像素值
+    /**
+     * 当前一次touchEvent的X值坐标
+     */
+    private int mLastMotionX;
+    /**
+     * 当前一次touchEvent的Y值坐标
+     */
+    private int mLastMotionY;
+    /**
+     * 嵌套滑动的距离
+     */
+    private int mNestedYOffset;
+
+    /**
+     * 是否被拖动
+     */
+    private boolean mIsBeingDragged = false;
+    /**
+     * 多手指点击的点击点
+     */
+    private int mActivePointerId = INVALID_POINTER;
+    /**
+     * 能让我们判断当前移动为一次Scroll的一个像素值
+     */
+    private int mTouchSlop;
 
     public StickyNestScrollChildLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -277,13 +314,14 @@ public class StickyNestScrollChildLayout extends LinearLayout implements NestedS
         }
     }
 
-    /*---------------------------------android手势操作滑动效果触摸屏事件处理 ---------------------------------*/
+    /**---------------------------------android手势操作滑动效果触摸屏事件处理 ---------------------------------**/
     GestureDetector.OnGestureListener gestureListener = new GestureDetector.OnGestureListener() {
         /**
          * 用户轻触触屏：Touch down(仅一次)时触发
          * @param event  event为down时的MotionEvent
-         * @return
+         * @return xxx
          */
+        @Override
         public boolean onDown(MotionEvent event) {
             startNestedScroll(ViewCompat.SCROLL_AXIS_VERTICAL);
             mLastMotionX = (int) event.getX();
@@ -296,6 +334,7 @@ public class StickyNestScrollChildLayout extends LinearLayout implements NestedS
          * 在Touch down(仅一次)之后一定时间（115ms）触发
          * @param e e为down时的MotionEvent
          */
+        @Override
         public void onShowPress(MotionEvent e) {
 
         }
@@ -303,8 +342,9 @@ public class StickyNestScrollChildLayout extends LinearLayout implements NestedS
         /**
          *用户（轻触触屏后）松开：Touch up(仅一次)时触发
          * @param e e为up时的MotionEvent
-         * @return
+         * @return xxx
          */
+        @Override
         public boolean onSingleTapUp(MotionEvent e) {
             stopNestedScroll();
             return true;
@@ -315,10 +355,11 @@ public class StickyNestScrollChildLayout extends LinearLayout implements NestedS
          *用户轻触触屏，并拖动：按下并滑动时触发:
          * @param e1  e1为down(仅一次)时的MotionEvent
          * @param e2  e2为move(多个)时的MotionEvent
-         * @param distanceX
-         * @param distanceY
-         * @return
+         * @param distanceX xxx
+         * @param distanceY xxx
+         * @return xxx
          */
+        @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
             dispatchNestedPreScroll((int) distanceX, (int) distanceY, mConsumed, mOffset);
             if(StickyConstant.IS_DEBUG) {
@@ -333,6 +374,7 @@ public class StickyNestScrollChildLayout extends LinearLayout implements NestedS
          * 在Touch down之后一定时间（500ms）后，由多个down事件触发
          * @param e  e为down时的MotionEvent
          */
+        @Override
         public void onLongPress(MotionEvent e) {
 
         }
@@ -343,8 +385,9 @@ public class StickyNestScrollChildLayout extends LinearLayout implements NestedS
          * @param e2 e2为up(仅一次)时的MotionEvent
          * @param velocityX X的滑动速度, 像素/秒
          * @param velocityY Y的滑动速度, 像素/秒
-         * @return
+         * @return xxx
          */
+        @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             if (Math.abs(e1.getY() - e2.getY()) > mTouchSlop && Math.abs(velocityY) > mMinimumFlingVelocity) {
                 fling((int) -velocityX, (int) -velocityY);
@@ -358,8 +401,9 @@ public class StickyNestScrollChildLayout extends LinearLayout implements NestedS
         /**
          * 完成一次单击，并确定（300ms内）没有发生第二次单击事件后触发
          * @param e e为down时的MotionEvent
-         * @return
+         * @return xxx
          */
+        @Override
         public boolean onSingleTapConfirmed(MotionEvent e) {
             return true;
         }
@@ -367,8 +411,9 @@ public class StickyNestScrollChildLayout extends LinearLayout implements NestedS
         /**
          *第二次单击down时触发
          * @param e e为第一次down时的MotionEvent
-         * @return
+         * @return xxx
          */
+        @Override
         public boolean onDoubleTap(MotionEvent e) {
             return true;
         }
@@ -376,15 +421,16 @@ public class StickyNestScrollChildLayout extends LinearLayout implements NestedS
         /**
          *第二次单击down、move和up时都触发
          * @param e e为不同时机下的MotionEvent
-         * @return
+         * @return xxx
          */
+        @Override
         public boolean onDoubleTapEvent(MotionEvent e) {
             return true;
         }
     };
 
 
-    /*-----------------------------嵌套滑动------------------------------------*/
+    /**----------------------------------------------嵌套滑动-----------------------------------------------**/
     private NestedScrollingChildHelper mChildHelper;
 
     @Override

@@ -16,12 +16,13 @@ import com.winnie.stickynavscrollview.fragment.TabFragment;
 
 
 /**
- * Created by winnie on 2017/5/5.
+ *
+ * @author winnie
+ * @date 2017/5/5
  */
-
 public class StickyNavScrollLayoutActivity1 extends AppCompatActivity {
 
-    private String[] mTitles = new String[] { "简介", "评价", "相关" };
+    private String[] mTitles = new String[]{"简介", "评价", "相关"};
     private LinearLayout mHeaderView;
     private ViewPager mViewPager;
     private FragmentPagerAdapter mAdapter;
@@ -32,39 +33,27 @@ public class StickyNavScrollLayoutActivity1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sticky_nav_scroll_layout1);
 
-        final StickyNavScrollLayout mScrollView = (StickyNavScrollLayout) findViewById(R.id.sticky_nav_layout);
-        mHeaderView = (LinearLayout) findViewById(R.id.sticky_nav_head_view);
-        mViewPager = (ViewPager)findViewById(R.id.sticky_nav_tab_view);
+        final StickyNavScrollLayout mScrollView = findViewById(R.id.sticky_nav_layout);
+        mHeaderView = findViewById(R.id.sticky_nav_head_view);
+        mViewPager = findViewById(R.id.sticky_nav_tab_view);
+        initData();
 
-        initDatas();
-
-        mScrollView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mScrollView.directlyScrollTo(0, 500);
-            }
-        }, 2000);
+        mScrollView.postDelayed(() -> mScrollView.directlyScrollTo(0, 500), 2000);
     }
 
-    private void initDatas()
-    {
-
-        for (int i = 0; i < mTitles.length; i++)
-        {
+    private void initData() {
+        for (int i = 0; i < mTitles.length; i++) {
             mFragments[i] = TabFragment.newInstance(mTitles[i]);
         }
 
-        mAdapter = new FragmentPagerAdapter(getSupportFragmentManager())
-        {
+        mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
-            public int getCount()
-            {
+            public int getCount() {
                 return mTitles.length;
             }
 
             @Override
-            public Fragment getItem(int position)
-            {
+            public Fragment getItem(int position) {
                 return mFragments[position];
             }
 
@@ -73,12 +62,10 @@ public class StickyNavScrollLayoutActivity1 extends AppCompatActivity {
         mViewPager.setAdapter(mAdapter);
         mViewPager.setCurrentItem(0);
 
-        mHeaderView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mHeaderView.addView(new View(StickyNavScrollLayoutActivity1.this), new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 300));
-            }
-        },5000);
+        mHeaderView.postDelayed(() -> mHeaderView.addView(
+                new View(
+                        StickyNavScrollLayoutActivity1.this),
+                new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 300)), 5000);
     }
 
     public void image(View view) {

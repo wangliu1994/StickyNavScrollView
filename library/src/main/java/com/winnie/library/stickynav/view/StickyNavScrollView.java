@@ -16,21 +16,32 @@ import com.winnie.library.stickynav.layout.StickyNestScrollChildLayout;
 import java.util.ArrayList;
 
 /**
- * Created by winnie on 2017/5/2.
+ *
+ * @author winnie
+ * @date 2017/5/2
  * 通过嵌套滑动实现的悬浮吸顶菜单栏通用控件
  */
-
+@SuppressWarnings("unused")
 public class StickyNavScrollView extends StickyNavScrollBaseLayout {
 
     private static final String TAG = StickyNavScrollView.class.getSimpleName();
 
     private StickyNestScrollChildLayout mNestedScrollChildLayout;
 
-    private LinearLayout mStickyHeadViewLayout;//头部
+    /**
+     * 头部
+     */
+    private LinearLayout mStickyHeadViewLayout;
 
-    private FrameLayout mStickyTabBarLayout;//悬浮部
+    /**
+     * 悬浮部
+     */
+    private FrameLayout mStickyTabBarLayout;
 
-    private FrameLayout mStickyTabViewLayout;//底部
+    /**
+     * 底部
+     */
+    private FrameLayout mStickyTabViewLayout;
 
 
     public StickyNavScrollView(Context context) {
@@ -49,9 +60,9 @@ public class StickyNavScrollView extends StickyNavScrollBaseLayout {
     protected void initView(Context context, TypedArray typedArray){
         LayoutInflater.from(context).inflate(R.layout.sticky_nav_scrollview ,this);
 
-        mStickyHeadViewLayout = (LinearLayout) findViewById(R.id.sticky_nav_head_view_layout);
-        mStickyTabBarLayout = (FrameLayout) findViewById(R.id.sticky_nav_tab_bar_layout);
-        mStickyTabViewLayout = (FrameLayout) findViewById(R.id.sticky_nav_tab_view_layout);
+        mStickyHeadViewLayout = findViewById(R.id.sticky_nav_head_view_layout);
+        mStickyTabBarLayout = findViewById(R.id.sticky_nav_tab_bar_layout);
+        mStickyTabViewLayout = findViewById(R.id.sticky_nav_tab_view_layout);
 
 //        mStickyHeadViewLayout.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -67,20 +78,20 @@ public class StickyNavScrollView extends StickyNavScrollBaseLayout {
 //        });
 
         if(typedArray != null) {
-            final int headerID = typedArray.getResourceId(R.styleable.StickyNav_navHeadView, -1);
-            final int tabBarID = typedArray.getResourceId(R.styleable.StickyNav_navTabBar, -1);
-            final int tabViewID = typedArray.getResourceId(R.styleable.StickyNav_navTabView, -1);
+            final int headerId = typedArray.getResourceId(R.styleable.StickyNav_navHeadView, -1);
+            final int tabBarId = typedArray.getResourceId(R.styleable.StickyNav_navTabBar, -1);
+            final int tabViewId = typedArray.getResourceId(R.styleable.StickyNav_navTabView, -1);
 
-            if (headerID != -1) {
-                View headView = LayoutInflater.from(context).inflate(headerID, null);
+            if (headerId != -1) {
+                View headView = LayoutInflater.from(context).inflate(headerId, null);
                 setHeadView(headView);
             }
-            if (tabBarID != -1) {
-                View tabBar = LayoutInflater.from(context).inflate(tabBarID, null);
+            if (tabBarId != -1) {
+                View tabBar = LayoutInflater.from(context).inflate(tabBarId, null);
                 setTabBar(tabBar);
             }
-            if (tabViewID != -1) {
-                View tabView = LayoutInflater.from(context).inflate(tabViewID, null);
+            if (tabViewId != -1) {
+                View tabView = LayoutInflater.from(context).inflate(tabViewId, null);
                 setTabView(tabView);
             }
         }
@@ -101,7 +112,7 @@ public class StickyNavScrollView extends StickyNavScrollBaseLayout {
         return mStickyTabViewLayout;
     }
 
-    /*--------------------------内部设置了布局，不允许再当做容器使用---------------------------------*/
+    /**--------------------------内部设置了布局，不允许再当做容器使用---------------------------------**/
     @Override
     public void addView(View child) {
         if (getChildCount() > 0) {
@@ -139,7 +150,8 @@ public class StickyNavScrollView extends StickyNavScrollBaseLayout {
 
         super.addView(child, index, params);
     }
-    /*----------------------------添加头部布局---------------------------------*/
+
+    /**----------------------------添加头部布局---------------------------------**/
     public void setHeadView(View headView) {
         mStickyHeadViewLayout.removeAllViews();
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(

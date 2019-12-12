@@ -52,7 +52,7 @@ public class TabFragment extends Fragment implements IStickyTabViewListener
         {
             mDatas.add(mTitle + " -> " + i);
         }
-//        mRecyclerView.setAdapter(new CommonAdapter<String>(getActivity(), R.layout.item, mDatas)
+//        mRecyclerView.setAdapter(new BaseCommonAdapter<String>(getActivity(), R.layout.item, mDatas)
 //        {
 //            @Override
 //            public void convert(ViewHolder holder, String o)
@@ -84,6 +84,7 @@ public class TabFragment extends Fragment implements IStickyTabViewListener
        }
     }
 
+    @Override
     public boolean isScrollToTop(){
         /** 滑动到顶部 **/
         RecyclerView.LayoutManager manager = mRecyclerView.getLayoutManager();

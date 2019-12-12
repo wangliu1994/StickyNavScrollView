@@ -19,10 +19,12 @@ import com.winnie.library.R;
 
 
 /**
- * Created by winnie on 2017/5/22.
- *下拉刷新的头部
+ *
+ * @author winnie
+ * @date 2017/5/22
+ * 下拉刷新的头部
  */
-
+@SuppressWarnings("unused")
 public abstract class StickyPullToRefreshHeader extends FrameLayout {
 
     protected ImageView mRefreshImageView;
@@ -40,10 +42,10 @@ public abstract class StickyPullToRefreshHeader extends FrameLayout {
         super(context);
         LayoutInflater.from(context).inflate(R.layout.pull_to_refresh_header, this);
 
-        mRefreshImageView = (ImageView) findViewById(R.id.pull_to_refresh_image);
-        mRefreshTextView = (TextView) findViewById(R.id.pull_to_refresh_text);
-        mRefreshSubTextView = (TextView) findViewById(R.id.pull_to_refresh_sub_text);
-        mPullToRefreshBar = (ProgressBar) findViewById(R.id.pull_to_refresh_progress);
+        mRefreshImageView = findViewById(R.id.pull_to_refresh_image);
+        mRefreshTextView = findViewById(R.id.pull_to_refresh_text);
+        mRefreshSubTextView = findViewById(R.id.pull_to_refresh_sub_text);
+        mPullToRefreshBar = findViewById(R.id.pull_to_refresh_progress);
 
         mPullLabel = context.getString(R.string.pull_to_refresh_pull_label);
         mRefreshingLabel = context.getString(R.string.pull_to_refresh_refreshing_label);
@@ -74,14 +76,14 @@ public abstract class StickyPullToRefreshHeader extends FrameLayout {
                 ColorStateList colors = typedArray.getColorStateList(R.styleable.StickyPullToRefresh_headerTextColor);
                 if(colors != null) {
                     setTextColor(colors);
-                };
+                }
             }
 
             if(typedArray.hasValue(R.styleable.StickyPullToRefresh_headerSubTextColor)){
                 ColorStateList colors = typedArray.getColorStateList(R.styleable.StickyPullToRefresh_headerSubTextColor);
                 if(colors != null) {
                     setSubTextColor(colors);
-                };
+                }
             }
 
             if (typedArray.hasValue(R.styleable.StickyPullToRefresh_headerDrawable)) {

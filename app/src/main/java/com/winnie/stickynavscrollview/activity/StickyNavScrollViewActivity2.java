@@ -16,9 +16,10 @@ import com.winnie.stickynavscrollview.fragment.TabFragment;
 
 
 /**
- * Created by winnie on 2017/5/5.
+ *
+ * @author winnie
+ * @date 2017/5/5
  */
-
 public class StickyNavScrollViewActivity2 extends AppCompatActivity {
 
     private String[] mTitles = new String[] { "简介", "评价", "相关" };
@@ -32,7 +33,7 @@ public class StickyNavScrollViewActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_sticky_nav_scroll_view2);
 
 
-        FrameLayout layout = (FrameLayout) findViewById(R.id.sticky_nav_layout);
+        FrameLayout layout = findViewById(R.id.sticky_nav_layout);
 
         StickyNavScrollView mScrollView = new StickyNavScrollView(this);
         View mHeadView = LayoutInflater.from(this).inflate(R.layout.view_sticky_nav_head, null);
@@ -49,21 +50,15 @@ public class StickyNavScrollViewActivity2 extends AppCompatActivity {
 
 //        mScrollView.setStickyNavTopMargin(200);
 
-
-        initDatas();
-
+        initData();
     }
 
-    private void initDatas()
-    {
-
-        for (int i = 0; i < mTitles.length; i++)
-        {
+    private void initData() {
+        for (int i = 0; i < mTitles.length; i++) {
             mFragments[i] = TabFragment.newInstance(mTitles[i]);
         }
 
-        mAdapter = new FragmentPagerAdapter(getSupportFragmentManager())
-        {
+        mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public int getCount()
             {
@@ -75,7 +70,6 @@ public class StickyNavScrollViewActivity2 extends AppCompatActivity {
             {
                 return mFragments[position];
             }
-
         };
 
         mViewPager.setAdapter(mAdapter);

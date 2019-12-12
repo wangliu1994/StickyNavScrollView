@@ -14,10 +14,12 @@ import com.winnie.library.R;
 
 
 /**
- * Created by winnie on 2017/5/23.
+ *
+ * @author winnie
+ * @date 2017/5/23
  * 下拉刷新的头部
  */
-
+@SuppressWarnings("unused")
 public class StickyPullToRefreshRotateHeader extends StickyPullToRefreshHeader {
 
     static final int ROTATION_ANIMATION_DURATION = 1200;

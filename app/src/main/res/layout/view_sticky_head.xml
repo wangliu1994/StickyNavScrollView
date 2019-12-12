@@ -20,7 +20,7 @@
             android:maxLines="2"
             android:ellipsize="end"
             android:layout_marginRight="30dp"
-            android:text="服务名称，最多20个字！服务商部在做限制，我们不用管"/>
+            android:text="名称，最多20个字！我们不用管"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -224,13 +224,13 @@
             android:id="@+id/service_position"
             android:layout_marginBottom="6dp"
             android:visibility="visible"
-            android:text="到店地址：重庆渝北区....."/>
+            android:text="到店地址：重庆....."/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="14dp"
             android:id="@+id/service_area"
-            android:text="上门范围：重庆渝北区范围内"
+            android:text="上门范围：重庆范围内"
             android:visibility="visible"
             android:textSize="12dp" />
     </LinearLayout>
