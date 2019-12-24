@@ -150,7 +150,7 @@ public abstract class StickyPullToRefreshBaseLayout
     }
 
     private void refreshLoadingViewsSize() {
-        final int maximumPullScroll = (int) (getMaximumPullScroll() * 1f);
+        final int maximumPullScroll = (int) (getHeaderSize() * 1f);
 
 //        int pLeft = getPaddingLeft();
 //        int pTop = getPaddingTop();
@@ -172,7 +172,6 @@ public abstract class StickyPullToRefreshBaseLayout
         }
 
 //        setPadding(pLeft, pTop, pRight, pBottom);
-        requestLayout();
     }
 
     public final StickyPullToRefreshHeader getHeaderLayout() {
@@ -371,7 +370,8 @@ public abstract class StickyPullToRefreshBaseLayout
         if (mState != State.PULL_TO_REFRESH && itemDimension >= Math.abs(newScrollValue)) {
             setState(State.PULL_TO_REFRESH);
         } else if (mState == State.PULL_TO_REFRESH && itemDimension < Math.abs(newScrollValue)) {
-            setState(State.RELEASE_TO_REFRESH);//下拉松手 可以松手了
+            //下拉松手 可以松手了
+            setState(State.RELEASE_TO_REFRESH);
         }
     }
 
