@@ -52,7 +52,6 @@ public abstract class StickyPullToRefreshBaseLayout
     private OnRefreshListener mOnRefreshListener;
     private OnPullEventListener mOnPullEventListener;
     private OnPullDownListener mDownListener;
-    ;
 
     private SmoothScrollRunnable mCurrentSmoothScrollRunnable;
 

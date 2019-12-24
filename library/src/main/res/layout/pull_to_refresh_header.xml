@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="中国领先的服务众包平台"
+            android:text="下拉刷新"
             android:textColor="@android:color/darker_gray"
             android:textSize="14sp"
             android:visibility="gone" />
